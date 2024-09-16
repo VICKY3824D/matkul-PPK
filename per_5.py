@@ -74,94 +74,76 @@
 # print("Nilai terbesar kedua adalah:", terbesar_kedua)
 
 
-# #quiz 3
-# # Program untuk memeriksa apakah tanggal valid
+#quiz 3
+# Program untuk memeriksa apakah tanggal valid
 
-# # Menerima input tanggal, bulan, dan tahun dari pengguna
-# tanggal = int(input("Masukkan tanggal: "))
-# bulan = int(input("Masukkan bulan: "))
-# tahun = int(input("Masukkan tahun: "))
+# Menerima input tanggal, bulan, dan tahun dari pengguna
+tanggal = int(input("Masukkan tanggal: "))
+bulan = int(input("Masukkan bulan: "))
+tahun = int(input("Masukkan tahun: "))
 
-# # Fungsi untuk memeriksa apakah tahun kabisat
-# def is_kabisat(tahun):
-#     if (tahun % 4 == 0 and tahun % 100 != 0) or (tahun % 400 == 0):
-#         return True
-#     else:
-#         return False
+# Fungsi untuk memeriksa apakah tahun kabisat
+def is_kabisat(tahun):
+    if (tahun % 4 == 0 and tahun % 100 != 0) or (tahun % 400 == 0):
+        return True
+    else:
+        return False
 
-# # Memeriksa validitas tanggal berdasarkan bulan
-# if bulan < 1 or bulan > 12:
-#     valid = False
-# else:
-#     # Daftar jumlah hari tiap bulan (Februari disesuaikan untuk tahun kabisat)
-#     if bulan == 2:  # Februari
-#         if is_kabisat(tahun):
-#             max_hari = 29
-#         else:
-#             max_hari = 28
-#     elif bulan in [4, 6, 9, 11]:  # April, Juni, September, November
-#         max_hari = 30
-#     else:  # Januari, Maret, Mei, Juli, Agustus, Oktober, Desember
-#         max_hari = 31
+# Memeriksa validitas tanggal berdasarkan bulan
+if bulan < 1 or bulan > 12:
+    valid = False
+else:
+    # Daftar jumlah hari tiap bulan (Februari disesuaikan untuk tahun kabisat)
+    if bulan == 2:  # Februari
+        if is_kabisat(tahun):
+            max_hari = 29
+        else:
+            max_hari = 28
+    elif bulan in [4, 6, 9, 11]:  # April, Juni, September, November
+        max_hari = 30
+    else:  # Januari, Maret, Mei, Juli, Agustus, Oktober, Desember
+        max_hari = 31
 
-#     # Memeriksa apakah tanggal valid
-#     if tanggal >= 1 and tanggal <= max_hari:
-#         valid = True
-#     else:
-#         valid = False
+    # Memeriksa apakah tanggal valid
+    if tanggal >= 1 and tanggal <= max_hari:
+        valid = True
+    else:
+        valid = False
 
-# # Output apakah tanggal valid atau tidak
-# if valid:
-#     print(f"Tanggal {tanggal}/{bulan}/{tahun} adalah tanggal yang valid.")
-# else:
-#     print(f"Tanggal {tanggal}/{bulan}/{tahun} adalah tanggal yang tidak valid.")
+# Output apakah tanggal valid atau tidak
+if valid:
+    print(f"Tanggal {tanggal}/{bulan}/{tahun} adalah tanggal yang valid.")
+else:
+    print(f"Tanggal {tanggal}/{bulan}/{tahun} adalah tanggal yang tidak valid.")
 
 
-#n faktorial
-# n = int(input())
-# hasil = 1
-# for i in range(1, n+1):
-#     hasil *= i
-# print(hasil)
 
-# fak n
-# g = int(input())
-# def faktorial(g):
-#     if g == 0 or g == 1:
-#         return 1;
-#     else:
-#         return g * faktorial(g - 1)
-# print(faktorial(g))
+
 
 #latihan perulangan 1
-# Budi membaca 1 halaman buku setiap harinya, kecuali pada hari Jumat dia
-# membaca hingga 2 halaman dan pada hari Minggu dia membaca hingga 3 halaman.
-# Budi selalu mulai membaca buku baru pada hari Senin dan terus membaca di
-# hari-hari selanjutnya hingga buku tersebut habis. Buatlah program yang menebak
-# pada hari apa Budi selesai membaca suatu buku. Diinputkan banyak halaman Buku
-# yang Budi ingin baca, outputkan pada hari apa Budi selesai membaca bukunya.
 
-halaman = int(input())
-hasil = 1
+# halaman = int(input())
+# hasil = 1
 
-for i in range(1, halaman + 1):
-    
-    if i % 7 == 2:  hasil += 2
-    elif i % 7 == 0:   hasil += 3
-    else:  hasil += 1
+# i = 1
+# while(i <= halaman):
+#     hasil += 1
+#     if i % 7 == 2:  hasil += 2
+#     elif i % 7 == 0:   hasil += 3 
+#     i += 1
 
-hari = hasil % 7
+# hari = hasil % 7
 
-def f(hari):
-    match hari:
-        case 1: return("Senin")
-        case 2: return("Selasa")
-        case 3: return("Rabu")
-        case 4: return("Kamis")
-        case 5: return("Jumat")
-        case 6: return("Sabtu")
-        case 0: return("Minggu")
+# def f(hari):
+#     match hari:
+#         case 1: return("Senin")
+#         case 2: return("Selasa")
+#         case 3: return("Rabu")
+#         case 4: return("Kamis")
+#         case 5: return("Jumat")
+#         case 6: return("Sabtu")
+#         case 0: return("Minggu")
 
-print(f(hari))
+# print(f(hari))
 
 #latihan 2 perulangan
