@@ -13,7 +13,7 @@ while True:
         harga_obat = int(input("masukkan harga obat: "))
         stok_obat = int(input("masukkan stok obat: "))
         kadaluarsa = input("Tanggal kadaluarsa: ")
-        obat.append(f"nama obat:{nama_obat}\nharga obat:{harga_obat}\nstok obat:{stok_obat}\nkadaluarasa:{kadaluarsa}")
+        obat.append(f"{nama_obat}\nharga obat:{harga_obat}\nstok obat:{stok_obat}\nkadaluarasa:{kadaluarsa}")
         print(f"obat {nama_obat}  berhasil ditambahkan dengan stok {stok_obat}")
     elif menu == 2:
         if len(obat) > 0:
@@ -30,4 +30,17 @@ while True:
             if hapus in j:
                 obat.remove(j)
                 print(f"obat {hapus} telah berhasi dihapus")
+    
+    #Menjual obat     
+    elif menu == 4:         
+        jual = input("Jual obat: ")       
+        jumlah = int(input("jumlah: "))      
+        jual.lower()         
+        for j in obat:            
+            if jual in j:                 
+                stok_obat -= jumlah                 
+                print(f"{jual} terjual sebanyak {jumlah} unit. sisa stok: {stok_obat}")  #bug: stok tidak berkurang     
+                                   
+        total = jumlah *  harga_obat         
+        print(f"struk: {jual}, jumlah: {jumlah}, total : {total}") 
     
