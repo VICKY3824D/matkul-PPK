@@ -6,10 +6,9 @@ obat = []
 while True:
     
     menu  = int(input("pilih menu: "))
-    menu.lower()
     if menu == 1:
    
-        nama_obat = input("masukkan nama obat: ")
+        nama_obat = input("masukkan nama obat: ").lower()
         harga_obat = int(input("masukkan harga obat: "))
         stok_obat = int(input("masukkan stok obat: "))
         kadaluarsa = input("Tanggal kadaluarsa: ")
@@ -33,12 +32,11 @@ while True:
     
     #Menjual obat     
     elif menu == 4:         
-        jual = input("Jual obat: ")       
-        jumlah = int(input("jumlah: "))      
-        jual.lower()         
+        jual = input("Jual obat: ").lower()    
+        jumlah = int(input("jumlah: ")) 
         for j in obat:            
             if jual in j:                 
-                stok_obat -= jumlah                 
+                stok_obat = stok_obat - jumlah                
                 print(f"{jual} terjual sebanyak {jumlah} unit. sisa stok: {stok_obat}")  #bug: stok tidak berkurang     
                                    
         total = jumlah *  harga_obat         
