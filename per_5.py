@@ -82,20 +82,19 @@ tanggal = int(input("Masukkan tanggal: "))
 bulan = int(input("Masukkan bulan: "))
 tahun = int(input("Masukkan tahun: "))
 
-# Fungsi untuk memeriksa apakah tahun kabisat
-def is_kabisat(tahun):
-    if (tahun % 4 == 0 and tahun % 100 != 0) or (tahun % 400 == 0):
-        return True
-    else:
-        return False
+# Memeriksa apakah tahun kabisat tanpa menggunakan fungsi
+if (tahun % 4 == 0 and tahun % 100 != 0) or (tahun % 400 == 0):
+    kabisat = True
+else:
+    kabisat = False
 
-# Memeriksa validitas tanggal berdasarkan bulan
+# Memeriksa validitas bulan
 if bulan < 1 or bulan > 12:
     valid = False
 else:
     # Daftar jumlah hari tiap bulan (Februari disesuaikan untuk tahun kabisat)
     if bulan == 2:  # Februari
-        if is_kabisat(tahun):
+        if kabisat:
             max_hari = 29
         else:
             max_hari = 28
@@ -115,6 +114,7 @@ if valid:
     print(f"Tanggal {tanggal}/{bulan}/{tahun} adalah tanggal yang valid.")
 else:
     print(f"Tanggal {tanggal}/{bulan}/{tahun} adalah tanggal yang tidak valid.")
+
 
 
 
