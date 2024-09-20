@@ -2,6 +2,7 @@ print("Sistem Apotek \n\n1. Tambah Obat")
 print("2. Lihat Struk Obat \n3. Hapus Obat")
 print("4. Jual Obat \n5. Laporan Transaksi ")
 print("6. Peringatan stok rendah")
+print("10. Selesai")
 obat = []
 while True:
     
@@ -92,5 +93,9 @@ while True:
                     print(f"Obat {j[0]} telah kadaluarsa.")
             else:
                 print("tidak ada yang kadaluarsa")
+    
+    elif menu == 10:
+        print("KITA UDAHAN AJA YA")
+        break
                 
                     
