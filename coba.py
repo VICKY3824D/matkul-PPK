@@ -39,13 +39,15 @@ while True:
         jumlah = int(input("jumlah: "))
         datake =0         
         for i in obat: 
-            nama,harga,stok,kadalwarsa= i.split(', ')
-            datake+=1
-            if jual==nama:
-                stok=int(stok)
-                stok=stok-jumlah
-                obat[datake]=f"{nama}, {harga}, {stok}, {kadalwarsa} "
+            nama,harga,stok,kadalwarsa = i.split(', ')
+            datake += 1
+            if jual == nama:
+                stok = int(stok)
+                stok = stok - jumlah
+                obat[datake] = f"{nama}, {harga}, {stok}, {kadalwarsa} "
         total=jumlah*int(harga)
         print(f"{jual} terjual sebanyak {jumlah} unit. sisa stok: {stok}")
         print(f"struk: {jual}, jumlah: {jumlah}, total : {total}")
         
+    #laporan transaksi 
+    
