@@ -16,7 +16,7 @@ while True:
         obat.append(daftar_obat)
         print(f"obat {nama_obat}  berhasil ditambahkan dengan stok {stok_obat}")
     
-    #menambah obat
+    #menampilan obat
     elif menu == 2:
         if len(obat) > 0:
             for i, daftar_obat in enumerate(obat):
@@ -53,3 +53,27 @@ while True:
     elif menu == 5:
         print("laporan keuangan")
     
+    #pemberitahuan stok rendah
+    elif menu == 6:
+        batas_stok = 5  # Batas stok rendah
+        stok_rendah = False
+        
+        print("Peringatan stok rendah:")
+        for j in obat:
+            if j[2] < batas_stok:
+                print(f"Obat {j[0]} stok rendah. Sisa stok: {j[2]}")
+                stok_rendah = True
+        
+        if not stok_rendah:
+            print("Tidak ada obat dengan stok rendah.")
+    
+        else:
+            print("Menu tidak valid, silakan pilih menu yang benar.")
+        
+    #kadaluarsa
+    # elif menu == 7:
+    #     checked = False
+    #     tanggal, bulan, tahun = 20, 10, 2024
+        
+    #     for j in obat:
+    #         j[3].split('-')
