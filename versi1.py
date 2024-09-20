@@ -67,13 +67,30 @@ while True:
         if not stok_rendah:
             print("Tidak ada obat dengan stok rendah.")
     
-        else:
-            print("Menu tidak valid, silakan pilih menu yang benar.")
+        # else:
+        #     print("Menu tidak valid, silakan pilih menu yang benar.")
         
     #kadaluarsa
-    # elif menu == 7:
-    #     checked = False
-    #     tanggal, bulan, tahun = 20, 10, 2024
+    elif menu == 7:
+        checked = False
+        # tgl = input("masukkan tanggal sekarang (yy-mm-dd): ")
+        # tanggal_sekarang = tgl.split('-')
         
-    #     for j in obat:
-    #         j[3].split('-')
+        tanggal, bulan, tahun = 20, 10, 2024
+        
+        for j in obat:
+            tanggal_lalu = j[3].split('-')
+            year = int(tanggal_lalu[0])
+            month = int(tanggal_lalu[1])
+            day = int(tanggal_lalu[2])
+            if tahun > year:
+                print(f"Obat {j[0]} telah kadaluarsa.")
+            elif  tahun == year:
+                if bulan > month:
+                    print(f"Obat {j[0]} telah kadaluarsa.")
+                elif tanggal ==  day:
+                    print(f"Obat {j[0]} telah kadaluarsa.")
+            else:
+                print("tidak ada yang kadaluarsa")
+                
+                    
