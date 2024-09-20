@@ -49,3 +49,7 @@ while True:
         total = jumlah *  harga_obat         
         print(f"struk: {jual}, jumlah: {jumlah}, total : {total}") 
     
+    #laporan transaksi
+    elif menu == 5:
+        print("laporan keuangan")
+    
