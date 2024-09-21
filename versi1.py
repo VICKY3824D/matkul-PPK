@@ -54,7 +54,7 @@ while True:
         elif menu == 4:         
             jual = input("Jual obat: ").lower()    
             jumlah = int(input("Jumlah: ")) 
-            obat_ditemukan = False  # Flag untuk cek apakah obat ditemukan
+            # obat_ditemukan = False  # Flag untuk cek apakah obat ditemukan
             for j in obat:            
                 if jual == j[0]:  # Memeriksa apakah nama obat sesuai
                     obat_ditemukan = True  # Menandai obat ditemukan
@@ -63,22 +63,24 @@ while True:
                         print(f"{jual} terjual sebanyak {jumlah} unit. Sisa stok: {j[2]}")
                         jualan = [jual, jumlah]
                         obat_dijual.append(jualan)  # Masukkan penjualan ke list
+                        total = jumlah *  harga_obat  # total belanja
+                        print(f"struk: {jual}, jumlah: {jumlah}, total : {total}")
+                        if total > 100000: #untuk diskon
+                            diskon = 1
+                            diskon = total * 0.2 #untuk diskon
+                            total = total - diskon #untuk diskon
+                            print(f"dengan diskon sebesar {diskon}")
+                        omset = omset + total  #menambah omset setiap penjualan
+                        print(f"struk: {jual}, jumlah: {jumlah}, total : {total}")
                         break  # Keluar dari loop setelah penjualan berhasil
                     else:
                         print(f"Stok {jual} tidak cukup")
                         break
-            if not obat_ditemukan:  # Jika obat tidak ditemukan, cetak pesan ini
-                print(f"Obat {jual} tidak ada")
+                else:  # Jika obat tidak ditemukan, cetak pesan ini
+                    print(f"Obat {jual} tidak ada")
 
-            total = jumlah *  harga_obat  # total belanja
-            print(f"struk: {jual}, jumlah: {jumlah}, total : {total}")
-            if total > 100000: #untuk diskon
-                diskon = 1
-                diskon = total * 0.2 #untuk diskon
-                total = total - diskon #untuk diskon
-                print(f"dengan diskon sebesar {diskon}")
-            omset = omset + total  #menambah omset setiap penjualan
-            print(f"struk: {jual}, jumlah: {jumlah}, total : {total}") 
+           
+             
 
         #laporan transaksi
         elif menu == 5:
