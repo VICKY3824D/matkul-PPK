@@ -1,15 +1,18 @@
-print("Sistem Apotek \n\n1. Tambah Obat")
-print("2. Lihat Struk Obat \n3. Hapus Obat")
-print("4. Jual Obat \n5. Laporan Transaksi ")
-print("6. Peringatan stok rendah\n7. Cek kadaluarsa")
-print("10. Selesai")
+print("=============")
+print("Sistem Apotek")
+print("=============")
 obat = [] # inisialisasi list obat 
-obat_terjual =  [] #mendata obat yang terjual
+# obat_terjual =  [] #mendata obat yang terjual
 obat_dijual = []
 omset = 0 #mendata omzet
 while True:
     
         print("-------------") 
+        print("1. Tambah Obat")
+        print("2. Lihat Struk Obat \n3. Hapus Obat")
+        print("4. Jual Obat \n5. Laporan Transaksi ")
+        print("6. Peringatan stok rendah\n7. Cek kadaluarsa")
+        print("10. Selesai")
         menu  = int(input("pilih menu(wajib angka): "))
         # memasukkan data obat
         if menu == 1:
@@ -17,7 +20,7 @@ while True:
             nama_obat = input("masukkan nama obat: ").lower()
             harga_obat = float(input("harga obat: "))
             stok_obat = int(input("stok obat: "))
-            kadaluarsa = input("Tanggal kadaluarsa: ")
+            kadaluarsa = input("kadaluarsa (yyyy-mm-dd): ")
             daftar_obat = [nama_obat,harga_obat,stok_obat,kadaluarsa]
             obat.append(daftar_obat)
             print(f"obat {nama_obat}  berhasil ditambahkan dengan stok {stok_obat}")
@@ -47,42 +50,46 @@ while True:
                     print(f"obat {hapus} tidak ada")
 
     
-        #Menjual obat     
+        #Menjual obat      
         elif menu == 4:         
             jual = input("Jual obat: ").lower()    
-            jumlah = int(input("jumlah: ")) 
+            jumlah = int(input("Jumlah: ")) 
+            obat_ditemukan = False  # Flag untuk cek apakah obat ditemukan
             for j in obat:            
-                if jual in j: 
-                    if j[2] < jumlah:                
-                        j[2] = j[2] - jumlah               
-                        print(f"{jual} terjual sebanyak {jumlah} unit. sisa stok: {j[2]}")
-                        obat_terjual.append(jual) 
-                        obat_dijual.append([jual,jumlah])
+                if jual == j[0]:  # Memeriksa apakah nama obat sesuai
+                    obat_ditemukan = True  # Menandai obat ditemukan
+                    if j[2] >= jumlah:  # Pastikan stok cukup
+                        j[2] = j[2] - jumlah  # Kurangi stok
+                        print(f"{jual} terjual sebanyak {jumlah} unit. Sisa stok: {j[2]}")
+                        jualan = [jual, jumlah]
+                        obat_dijual.append(jualan)  # Masukkan penjualan ke list
+                        break  # Keluar dari loop setelah penjualan berhasil
                     else:
-                        print(f"stok {jual} tidak cukup")
-                else:
-                    print(f"obat {jual} tidak ada")
-
+                        print(f"Stok {jual} tidak cukup")
+                        break
+            if not obat_ditemukan:  # Jika obat tidak ditemukan, cetak pesan ini
+                print(f"Obat {jual} tidak ada")
 
             total = jumlah *  harga_obat  # total belanja
+            print(f"struk: {jual}, jumlah: {jumlah}, total : {total}")
             if total > 100000: #untuk diskon
                 diskon = 1
                 diskon = total * 0.2 #untuk diskon
                 total = total - diskon #untuk diskon
-                print(f"struk: {jual}, jumlah: {jumlah}, total : {total}\n dengan diskon {diskon}")
+                print(f"dengan diskon sebesar {diskon}")
             omset = omset + total  #menambah omset setiap penjualan
             print(f"struk: {jual}, jumlah: {jumlah}, total : {total}") 
 
         #laporan transaksi
         elif menu == 5:
-            if len(obat_terjual) > 0:
-                print(f"obat yang terjual: ", end=" ")
-                for i in obat_terjual:
-                    print(i,end=", ")
-                print(f"\npenghasilan total: ", omset)   
+            if len(obat_dijual) == 0:
+                print("Belum ada obat yang terjual.")            
             else:
-                print("Belum ada obat yang terjual.")        
-
+                print(f"obat yang terjual: ", end=" ")
+                for i in obat_dijual:
+                    print(f"{i[0]}({i[1]})",end=", ")
+                print(f"\npenghasilan total: ", omset) 
+                
         #pemberitahuan stok rendah
         elif menu == 6:
             batas_stok = 5  # Batas stok rendah
