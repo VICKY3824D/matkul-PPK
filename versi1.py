@@ -56,19 +56,19 @@ while True:
             jumlah = int(input("Jumlah: ")) 
             # obat_ditemukan = False  # Flag untuk cek apakah obat ditemukan
             for j in obat:            
-                if jual == j[0]:  # Memeriksa apakah nama obat sesuai
+                if jual == j[0]:  # memerikas apakah nama obat sesuai
                     obat_ditemukan = True  # Menandai obat ditemukan
-                    if j[2] >= jumlah:  # Pastikan stok cukup
-                        j[2] = j[2] - jumlah  # Kurangi stok
+                    if j[2] >= jumlah:  # memastikan stok cukup
+                        j[2] = j[2] - jumlah  #mengurangi stok
                         print(f"{jual} terjual sebanyak {jumlah} unit. Sisa stok: {j[2]}")
-                        jualan = [jual, jumlah]
-                        obat_dijual.append(jualan)  # Masukkan penjualan ke list
+                        jualan = [jual, jumlah] #mengelist data penjualan
+                        obat_dijual.append(jualan)  # Masukkan penjualan ke list obat_dijual
                         total = jumlah *  harga_obat  # total belanja
                         print(f"struk: {jual}, jumlah: {jumlah}, total : {total}")
-                        if total > 100000: #untuk diskon
+                        if total > 100000: #diskon ketika berbelanja melebihi 100.000
                             diskon = 1
                             diskon = total * 0.2 #untuk diskon
-                            total = total - diskon #untuk diskon
+                            total = total - diskon #total belanja setelah diskon
                             print(f"dengan diskon sebesar {diskon}")
                         omset = omset + total  #menambah omset setiap penjualan
                         print(f"struk: {jual}, jumlah: {jumlah}, total : {total}")
