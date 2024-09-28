@@ -1,3 +1,8 @@
+#vidky A2
+#davena
+#Rizendy
+#Muhammad Diya
+
 print("=============")
 print("Sistem Apotek")
 print("=============")
@@ -54,6 +59,7 @@ while True:
         elif menu == 4:         
             jual = input("Jual obat: ").lower()    
             jumlah = int(input("Jumlah: ")) 
+            member = input("member atau bukan(y/n?): ").lower()
             # obat_ditemukan = False  # Flag untuk cek apakah obat ditemukan
             for j in obat:            
                 if jual == j[0]:  # memerikas apakah nama obat sesuai
@@ -65,11 +71,17 @@ while True:
                         obat_dijual.append(jualan)  # Masukkan penjualan ke list obat_dijual
                         total = jumlah *  harga_obat  # total belanja
                         print(f"struk: {jual}, jumlah: {jumlah}, total : {total}")
+                        if member == 'y':
+                            discount = 1
+                            discount = total * 0.1
+                            total = total - discount #total belanja setelah diskon
+                            print(f"dengan diskon sebesar member {discount}")
+                            
                         if total > 100000: #diskon ketika berbelanja melebihi 100.000
                             diskon = 1
-                            diskon = total * 0.2 #untuk diskon
+                            diskon = total * 0.1 #untuk diskon
                             total = total - diskon #total belanja setelah diskon
-                            print(f"dengan diskon sebesar {diskon}")
+                            print(f"dengan diskon 10% sebesar {diskon}")
                         omset = omset + total  #menambah omset setiap penjualan
                         print(f"struk: {jual}, jumlah: {jumlah}, total : {total}")
                         break  # Keluar dari loop setelah penjualan berhasil
