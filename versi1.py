@@ -10,6 +10,83 @@ obat = [] # inisialisasi list obat
 # obat_terjual =  [] #mendata obat yang terjual
 obat_dijual = []
 omset = 0 #mendata omzet
+
+# Function to check if the medicine is expired
+def is_kadaluarsa(name, yy, mm, dd):
+    for j in obat:
+        if j[0].lower() == name.lower():  # match the medicine name (ignoring case)
+            # Memisahkan tanggal kadaluarsa obat
+            tanggal_lalu = j[3].split('-')
+            tahun_kadaluarsa = int(tanggal_lalu[0])
+            bulan_kadaluarsa = int(tanggal_lalu[1])
+            hari_kadaluarsa = int(tanggal_lalu[2])
+
+            # Logika pengecekan kadaluarsa
+            if tahun_kadaluarsa < yy:
+                return True  # Obat kadaluarsa
+            elif tahun_kadaluarsa == yy:
+                if bulan_kadaluarsa < mm:
+                    return True  # Obat kadaluarsa
+                elif bulan_kadaluarsa == mm:
+                    if hari_kadaluarsa <= dd:
+                        return True  # Obat kadaluarsa
+                    else:
+                        return False  # Obat belum kadaluarsa
+                else:
+                    return False  # Obat belum kadaluarsa
+            else:
+                return False  # Obat belum kadaluarsa
+
+    return None  # Return None if the medicine name is not found
+
+# Function to handle selling medicine
+def jual_obat():
+    jual = input("Jual obat: ").lower()
+    
+    # Masukkan tanggal saat ini untuk pengecekan kadaluarsa
+    tgl_sekarang = input("Masukkan tanggal sekarang (yyyy-mm-dd): ")
+    tahun_sekarang, bulan_sekarang, hari_sekarang = map(int, tgl_sekarang.split('-'))
+
+    # Cek apakah obat sudah kadaluarsa
+    if is_kadaluarsa(jual, tahun_sekarang, bulan_sekarang, hari_sekarang):
+        print(f"Obat {jual} sudah kadaluarsa dan tidak dapat dijual.")
+    else:
+        jumlah = int(input("Jumlah: ")) 
+        member = input("member atau bukan (y/n?): ").lower()
+
+        for j in obat:
+            if jual == j[0]:  # memerikas apakah nama obat sesuai
+                if j[2] >= jumlah:  # memastikan stok cukup
+                    j[2] -= jumlah  # mengurangi stok
+                    print(f"{jual} terjual sebanyak {jumlah} unit. Sisa stok: {j[2]}")
+                    
+                    jualan = [jual, jumlah]  # mengelist data penjualan
+                    obat_dijual.append(jualan)  # Masukkan penjualan ke list obat_dijual
+                    
+                    total = jumlah * j[1]  # total belanja
+                    print(f"struk: {jual}, jumlah: {jumlah}, total : {total}")
+
+                    if member == 'y':
+                        discount = total * 0.1  # Diskon member 10%
+                        total -= discount  # Mengurangi total dengan diskon
+                        print(f"Dengan diskon sebesar member {discount}")
+
+                    if total > 100000:  # Diskon tambahan jika total belanja melebihi 100.000
+                        diskon = total * 0.1  # Diskon tambahan 10%
+                        total -= diskon
+                        print(f"Dengan diskon 10% sebesar {diskon}")
+                    
+                    global omset  # Menggunakan omset dari luar fungsi
+                    omset += total  # Menambah omset setiap penjualan
+                    print(f"struk: {jual}, jumlah: {jumlah}, total : {total}")
+                    break  # Keluar dari loop setelah penjualan berhasil
+                else:
+                    print(f"Stok {jual} tidak cukup")
+                    break
+        else:
+            print(f"Obat {jual} tidak ada.")
+
+
 while True:
     
         print("-------------") 
@@ -56,44 +133,10 @@ while True:
 
     
         #Menjual obat      
-        elif menu == 4:         
-            jual = input("Jual obat: ").lower()    
-            jumlah = int(input("Jumlah: ")) 
-            member = input("member atau bukan(y/n?): ").lower()
-            # obat_ditemukan = False  # Flag untuk cek apakah obat ditemukan
-            for j in obat:            
-                if jual == j[0]:  # memerikas apakah nama obat sesuai
-                    obat_ditemukan = True  # Menandai obat ditemukan
-                    if j[2] >= jumlah:  # memastikan stok cukup
-                        j[2] = j[2] - jumlah  #mengurangi stok
-                        print(f"{jual} terjual sebanyak {jumlah} unit. Sisa stok: {j[2]}")
-                        jualan = [jual, jumlah] #mengelist data penjualan
-                        obat_dijual.append(jualan)  # Masukkan penjualan ke list obat_dijual
-                        total = jumlah *  harga_obat  # total belanja
-                        print(f"struk: {jual}, jumlah: {jumlah}, total : {total}")
-                        if member == 'y':
-                            discount = 1
-                            discount = total * 0.1
-                            total = total - discount #total belanja setelah diskon
-                            print(f"dengan diskon sebesar member {discount}")
-                            
-                        if total > 100000: #diskon ketika berbelanja melebihi 100.000
-                            diskon = 1
-                            diskon = total * 0.1 #untuk diskon
-                            total = total - diskon #total belanja setelah diskon
-                            print(f"dengan diskon 10% sebesar {diskon}")
-                        omset = omset + total  #menambah omset setiap penjualan
-                        print(f"struk: {jual}, jumlah: {jumlah}, total : {total}")
-                        break  # Keluar dari loop setelah penjualan berhasil
-                    else:
-                        print(f"Stok {jual} tidak cukup")
-                        break
-                else:  # Jika obat tidak ditemukan, cetak pesan ini
-                    print(f"Obat {jual} tidak ada")
+        elif menu == 4:
+            jual_obat();         
 
            
-             
-
         #laporan transaksi
         elif menu == 5:
             if len(obat_dijual) == 0:
@@ -131,29 +174,37 @@ while True:
             tahun_sekarang = int(tanggal_sekarang[0])
             bulan_sekarang = int(tanggal_sekarang[1])
             hari_sekarang = int(tanggal_sekarang[2])
-
-            for j in obat:
-                # Memisahkan tanggal kadaluarsa obat
-                tanggal_lalu = j[3].split('-')
-                tahun_kadaluarsa = int(tanggal_lalu[0])
-                bulan_kadaluarsa = int(tanggal_lalu[1])
-                hari_kadaluarsa = int(tanggal_lalu[2])
-
-                # Logika pengecekan kadaluarsa
-                if tahun_kadaluarsa < tahun_sekarang:
-                    print(f"Obat {j[0]} telah kadaluarsa.")
-                elif tahun_kadaluarsa == tahun_sekarang:
-                    if bulan_kadaluarsa < bulan_sekarang:
-                        print(f"Obat {j[0]} telah kadaluarsa.")
-                    elif bulan_kadaluarsa == bulan_sekarang:
-                        if hari_kadaluarsa <= hari_sekarang:
-                            print(f"Obat {j[0]} telah kadaluarsa.")
-                        else:
-                            print(f"Obat {j[0]} belum kadaluarsa.")
-                    else:
-                        print(f"Obat {j[0]} belum kadaluarsa.")
+            
+            for i in obat:
+                if is_kadaluarsa(i[0],tahun_sekarang,  bulan_sekarang, hari_sekarang) ==  True:
+                    print(f"obat {i[0]} kadaluarsa")
                 else:
-                    print(f"Obat {j[0]} belum kadaluarsa.")
+                    print(f"obat {i[0]} tidak kadaluarsa")
+
+
+
+            # for j in obat:
+            #     # Memisahkan tanggal kadaluarsa obat
+            #     tanggal_lalu = j[3].split('-')
+            #     tahun_kadaluarsa = int(tanggal_lalu[0])
+            #     bulan_kadaluarsa = int(tanggal_lalu[1])
+            #     hari_kadaluarsa = int(tanggal_lalu[2])
+
+            #     # Logika pengecekan kadaluarsa
+            #     if tahun_kadaluarsa < tahun_sekarang:
+            #         print(f"Obat {j[0]} telah kadaluarsa.")
+            #     elif tahun_kadaluarsa == tahun_sekarang:
+            #         if bulan_kadaluarsa < bulan_sekarang:
+            #             print(f"Obat {j[0]} telah kadaluarsa.")
+            #         elif bulan_kadaluarsa == bulan_sekarang:
+            #             if hari_kadaluarsa <= hari_sekarang:
+            #                 print(f"Obat {j[0]} telah kadaluarsa.")
+            #             else:
+            #                 print(f"Obat {j[0]} belum kadaluarsa.")
+            #         else:
+            #             print(f"Obat {j[0]} belum kadaluarsa.")
+            #     else:
+            #         print(f"Obat {j[0]} belum kadaluarsa.")
 
         elif menu == 10:
             print("KITA UDAHAN AJA YA")
