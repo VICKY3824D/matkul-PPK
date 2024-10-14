@@ -55,7 +55,7 @@ def jual_obat():
         member = input("member atau bukan (y/n?): ").lower()
 
         for j in obat:
-            if jual == j[0]:  # memerikas apakah nama obat sesuai
+            if jual == j[0]:  # memerikas apakah nama obat sesuai yang diinputkan
                 if j[2] >= jumlah:  # memastikan stok cukup
                     j[2] -= jumlah  # mengurangi stok
                     print(f"{jual} terjual sebanyak {jumlah} unit. Sisa stok: {j[2]}")
@@ -181,33 +181,8 @@ while True:
                 else:
                     print(f"obat {i[0]} tidak kadaluarsa")
 
-
-
-            # for j in obat:
-            #     # Memisahkan tanggal kadaluarsa obat
-            #     tanggal_lalu = j[3].split('-')
-            #     tahun_kadaluarsa = int(tanggal_lalu[0])
-            #     bulan_kadaluarsa = int(tanggal_lalu[1])
-            #     hari_kadaluarsa = int(tanggal_lalu[2])
-
-            #     # Logika pengecekan kadaluarsa
-            #     if tahun_kadaluarsa < tahun_sekarang:
-            #         print(f"Obat {j[0]} telah kadaluarsa.")
-            #     elif tahun_kadaluarsa == tahun_sekarang:
-            #         if bulan_kadaluarsa < bulan_sekarang:
-            #             print(f"Obat {j[0]} telah kadaluarsa.")
-            #         elif bulan_kadaluarsa == bulan_sekarang:
-            #             if hari_kadaluarsa <= hari_sekarang:
-            #                 print(f"Obat {j[0]} telah kadaluarsa.")
-            #             else:
-            #                 print(f"Obat {j[0]} belum kadaluarsa.")
-            #         else:
-            #             print(f"Obat {j[0]} belum kadaluarsa.")
-            #     else:
-            #         print(f"Obat {j[0]} belum kadaluarsa.")
-
         elif menu == 10:
-            print("KITA UDAHAN AJA YA")
+            print("PROGRAM BERHENTI")
             break
         
   
