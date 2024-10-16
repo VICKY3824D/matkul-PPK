@@ -1,58 +1,171 @@
-# LATIHAN 1
+ # LATIHAN 1
 
-# daftar_harga = [['apel',3000], ['pisang' , 2000], ['jeruk', 5000]];
-# today_sell = {'apel' : 10, 'pisang': 5, 'jeruk': 3};
+# daftar_harga = [];
+# total_sell =  {};
 # total = 0;
 # rincian  = {};
 
-# sum_apel = daftar_harga[0][1]  * today_sell['apel'];
-# sum_pisang = daftar_harga[1][1] * today_sell['pisang'];
-# sum_jeruk = daftar_harga[2][1] * today_sell['jeruk'];
+# while True:
+#     print("1. masukkan daftar harga");
+#     print("2. tampilkan buah beserta harga");
+#     print("3. jual");
+#     print("4. rincian");
+#     print("5. keluar sistem");
+#     inp = int(input("Pilihan : "));
+#     if  inp == 1:
+#         buah = input("Buah : ");
+#         harga = int(input("Harga : "));
+#         daftar_harga.append([buah,harga]);
+#     elif inp == 2:
+#         print("daftar harga :", daftar_harga);
+#     elif inp == 3:
+#         print("Jual  buah : ");
+#         buah = input("Buah : ");
+#         for i in daftar_harga:
+#             if buah == i[0]:
+#                 jml = int(input("Jumlah : "));
+#                 total_harga =  i[1] * jml;
+#                 total_sell[buah] =  jml;
+#                 total = total + total_harga;
+#                 print(f"Buah {buah} terjual {jml} buah");
+#                 break;
+#             else:
+#                 print("Buah tidak ada");
 
-# rincian['apel'] =  sum_apel;
-# rincian['pisang'] = sum_pisang;
-# rincian['jeruk'] = sum_jeruk;
+#     elif inp == 4:
+#         print("Total pendapatan: Rp", total);
+#         print("Rincian penjualan : ", total_sell);
 
-# total1 = sum_apel + sum_pisang + sum_jeruk;
-
-# print("Total pendapatan: Rp", total);
-# print("Rincian penjualan : ", rincian);
+#     elif inp == 5:
+#         print("sistem selesai");
+#         break;
 
 
 # LATIHAN 2
-# daftar_pakaian = [['sepatu',  500000], ['tas', 300000], ['topi', 150000]];
-# diskon = [10,20,5];
+# daftar_harga = [];
+# daftar_diskon = [];
+# total_sell =  {};
+# total = 0;
+# harga_stlh_disc  = {};
 
-# harga_setelah_diskon = {};
+# while True:
+#     print("1. masukkan daftar harga pakaian");
+#     print("2. masukkan daftar diskon");
+#     print("3. tampilkan pakaian beserta harga");
+#     print("4. jual");
+#     print("5. rincian");
+#     print("6. keluar sistem");
+#     inp = int(input("Pilihan : "));
+#     if  inp == 1:
+#         pakaian = input("Pakaian : ");
+#         harga = int(input("Harga : "));
+#         daftar_harga.append([pakaian,harga]);
+#     elif  inp == 2:
+#         barang = input("Pakaian  : ");
+#         for i in daftar_harga:
+#             if barang == i[0]:
+#                 disc =  int(input("Diskon : "));
+#                 hrg_after =i[1] * (100 - disc) / 100;
+#                 harga_stlh_disc[barang] = hrg_after;
+#                 print(f"harga pakaian {i[0]} setelah  diskon {disc}% adalah Rp {hrg_after}");
+#                 break;
+#             else:
+#                 print("Pakaian tidak ada");        
+#     elif inp == 3:
+#         print("daftar harga :", daftar_harga);
+#         print("Setelah disc: ",  harga_stlh_disc);
 
-# hrga_sepatu_disk = daftar_pakaian[0][1]  - (daftar_pakaian[0][1] * diskon[0] / 100);
-# hrga_tas_disk = daftar_pakaian[1][1] - (daftar_pakaian[1][1] *  diskon[1] / 100);
-# hrga_topi_disk = daftar_pakaian[2][1] - (daftar_pakaian[2][1]  * diskon[2] / 100);
+#     elif inp == 4:
+#         print("Jual  pakaian : ");
+#         clothes = input("pakaian : ");
+#         for i in harga_stlh_disc:
+#             if clothes == i:
+#                 jml = int(input("Jumlah : "));
+#                 total_harga =  harga_stlh_disc[i] * jml;
+#                 total_sell[clothes] =  jml;
+#                 total = total + total_harga;
+#                 print(f"pakaian {clothes} terjual {jml} buah, total {total}");
+#                 break;
+#             else:
+#                 print("Pakaian tidak ada");
 
-# total2 =  hrga_sepatu_disk + hrga_tas_disk + hrga_topi_disk;
+#     elif inp == 5:
+#         print("Total pendapatan: Rp", total);
+#         print("Rincian penjualan : ", total_sell);
 
-# harga_setelah_diskon['sepatu'] = hrga_sepatu_disk;
-# harga_setelah_diskon['tas'] = hrga_tas_disk;
-# harga_setelah_diskon['topi'] = hrga_topi_disk;
-
-# print("Harga setelah diskon : ", harga_setelah_diskon);
-# print("Total harga setelah diskon: Rp", total2)
+#     elif inp == 6:
+#         print("sistem selesai");
+#         break;
 
 
 # LATIHAN 3
-# anggota = {'Ali':['Buku A', 'Buku B'], 'Budi': ['Buku C']};
-# # tambah buku untuk ali 
-# anggota['Ali'].append('Buku D');
-# #  Hapus  buku C dari budi
-# del  anggota['Budi'][0];
-# print("Data pinjaman: ",anggota);
+
+# anggota = {};
+# daftar_buku = [];
+# buku_buku = []
+
+# while True:
+
+#     print("----------------------------\njika keluar input : 0")
+#     n = int(input("Memasukkan berapa orang : "));
+
+#     if  n == 0:
+#         break;
+#     else:
+#         for i in range(n):
+#             print('-------------------')
+#             nama = input("Nama : ");
+#             nBuku = int(input("berapa buku : "));
+            
+#             if nama not in anggota:
+#                 anggota[nama] = [];
+            
+#             for i in  range(nBuku):
+#                 buku = input("Buku : ");
+#                 anggota[nama].append(buku);
+
+# print("data buku sebelum dihapus", anggota)
+
+# while True:
+#     print("\n----------------------------");
+#     pilihan = input("Apakah ingin menghapus buku? (y/n) : ");
+
+#     if pilihan.lower() == 'n':
+#         break;
+#     elif pilihan.lower() == 'y':
+#         nama = input("Anggota yang ingin dihapus bukunya: ");
+#         if nama in anggota:
+#             buku = input("Masukkan judul buku yang ingin dihapus: ");
+#             if buku in anggota[nama]:
+#                 anggota[nama].remove(buku);
+#                 print(f"Buku '{buku}' telah dihapus dari {nama}.");
+#             else:
+#                 print(f"Buku '{buku}' tidak ditemukan di daftar {nama}.");
+#         else:
+#             print(f"Nama '{nama}' tidak ditemukan.");
+#     else:
+#         print("Pilihan tidak valid(y/n).");
+    
+# print("data buku setelah dihapus: ", anggota);
+
 
 # LATIHAN 4
 
-reservasi = {1 : 'Budi', 2 : 'Siti', 3 : 'Andi'};
-# menambah reservasi
-reservasi[4] = 'Joko';
-# menghapus reservasi
-del reservasi[2];
-print("Status meja: ",reservasi);
+reservasi = {};
+n =  int(input("Masukkan jumlah meja: "));
+for i in range(1, n+1):
+    reservasi[i] = input(f"Nama yang memesan meja-{i}: ");
+print("reservasi awal: ",reservasi);
+jml_hps = int(input("banyak meja yang ingin dihapus:  "));
+for i in range(jml_hps):
+    hapus  = int(input("Meja yang ingin dihapus: "));
+    if  hapus in reservasi:
+        reservasi[hapus]  = "kosong";
+
+    else:
+        print("meja {hapus} tidak ada")
+print(f"reservasi final:",reservasi)
+
+
+
 
